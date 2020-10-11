@@ -1,0 +1,10 @@
+/*
+ *  Worker
+ *
+ *  Copyright (C) 2019, Hensoldt Cyber GmbH
+ *
+ */
+
+component Worker {
+    control;
+}

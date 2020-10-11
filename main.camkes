@@ -1,0 +1,35 @@
+/*
+ *  CAmkES configuration file for TimeServer tests
+ *
+ *  Copyright (C) 2020, Hensoldt Cyber GmbH
+ */
+
+import <std_connector.camkes>;
+
+import "components/Ticker/Ticker.camkes";
+import "components/Worker/Worker.camkes";
+
+#include "system_config.h"
+
+#include "TimeServer/camkes/TimeServer.camkes"
+DECLARE_COMPONENT_TimeServer(TimeServer)
+
+#include "system_config.h"
+
+assembly {
+    composition {
+
+        component Ticker ticker;
+
+        component Worker worker1;
+        component Worker worker2;
+
+        DECLARE_AND_CONNECT_INSTANCE_TimeServer(
+            TimeServer,
+            timeServer,
+            ticker.timeServer_rpc,
+            ticker.timeServer_notify)
+
+     }
+
+}
