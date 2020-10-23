@@ -55,7 +55,7 @@ int run(void)
 
         uint64_t delta = timestamp_new - timestamp;
         Debug_LOG_INFO(
-            "1 sec tick, delta %" PRIu64 ".%" PRIu64 " sec",
+            "1 sec tick, delta %" PRIu64 ".%09" PRIu64 " msec",
             delta / NS_IN_S,
             delta % NS_IN_S);
         timestamp = timestamp_new;
