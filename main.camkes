@@ -12,7 +12,7 @@ import "components/Worker/Worker.camkes";
 #include "system_config.h"
 
 #include "TimeServer/camkes/TimeServer.camkes"
-DECLARE_COMPONENT_TimeServer(TimeServer)
+TimeServer_COMPONENT_DECLARE(TimeServer)
 
 #include "system_config.h"
 
@@ -24,11 +24,12 @@ assembly {
         component Worker worker1;
         component Worker worker2;
 
-        DECLARE_AND_CONNECT_INSTANCE_TimeServer(
-            TimeServer,
+        component TimeServer timeServer;
+
+        TimeServer_INSTANCE_CONNECT_CLIENTS(
             timeServer,
-            ticker.timeServer_rpc,
-            ticker.timeServer_notify)
+            ticker.timeServer_rpc, ticker.timeServer_notify
+        )
 
      }
 
