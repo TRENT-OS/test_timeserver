@@ -18,7 +18,7 @@ target_include_directories(${PROJECT_NAME} INTERFACE ${CMAKE_CURRENT_LIST_DIR})
 #-------------------------------------------------------------------------------
 project(tests_timeserver C)
 
-DeclareCAmkESComponent_TimeServer(
+TimeServer_DeclareCAmkESComponent(
     TimeServer
 )
 
