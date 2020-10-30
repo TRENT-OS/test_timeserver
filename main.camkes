@@ -33,4 +33,10 @@ assembly {
 
      }
 
+    configuration {
+        TimeServer_CLIENT_ASSIGN_BADGES(
+            ticker.timeServer_rpc
+        )
+    }
+
 }
