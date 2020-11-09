@@ -12,7 +12,7 @@ import "components/Worker/Worker.camkes";
 #include "system_config.h"
 
 #include "TimeServer/camkes/TimeServer.camkes"
-TimeServer_COMPONENT_DECLARE(TimeServer)
+TimeServer_COMPONENT_DEFINE(TimeServer)
 
 #include "system_config.h"
 
