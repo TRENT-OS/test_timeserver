@@ -31,7 +31,7 @@ DeclareCAmkESComponent(
         -Werror
     LIBS
         os_core_api
-        os_libs
+        lib_debug
         TimeServer_client
 )
 
@@ -43,7 +43,7 @@ DeclareCAmkESComponent(
         -Wall
         -Werror
     LIBS
-        os_libs
+        lib_debug
 )
 
 DeclareAndCreateCamkESSystem(main.camkes)
