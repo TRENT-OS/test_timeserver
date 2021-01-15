@@ -43,7 +43,6 @@ DeclareCAmkESComponent(
         -Wall
         -Werror
     LIBS
-        #os_core_api
         os_libs
 )
 
