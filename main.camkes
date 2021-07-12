@@ -37,6 +37,9 @@ assembly {
         TimeServer_CLIENT_ASSIGN_BADGES(
             ticker.timeServer_rpc
         )
+        worker1.priority = 1;
+        worker2.priority = 1;
+        ticker.priority = 2;
     }
 
 }
