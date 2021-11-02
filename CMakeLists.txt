@@ -1,7 +1,7 @@
 #
 # Test TimeServer
 #
-# Copyright (C) 2020, HENSOLDT Cyber GmbH
+# Copyright (C) 2020-2021, HENSOLDT Cyber GmbH
 #
 
 cmake_minimum_required(VERSION 3.7.2)
@@ -31,6 +31,7 @@ DeclareCAmkESComponent(
         -Werror
     LIBS
         os_core_api
+        lib_compiler
         lib_debug
         TimeServer_client
 )

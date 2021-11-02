@@ -1,11 +1,12 @@
 /*
  *  Ticker
  *
- *  Copyright (C) 2019, HENSOLDT Cyber GmbH
+ *  Copyright (C) 2019-2021, HENSOLDT Cyber GmbH
  *
  */
 
 #include "lib_debug/Debug.h"
+#include "lib_compiler/compiler.h"
 #include "TimeServer.h"
 #include <camkes.h>
 
@@ -53,7 +54,7 @@ int run(void)
         uint64_t timestamp_new = 0;
         timeServer_rpc_time(&timestamp_new);
 
-        uint64_t delta = timestamp_new - timestamp;
+        DECL_UNUSED_VAR(uint64_t delta) = timestamp_new - timestamp;
         Debug_LOG_INFO(
             "1 sec tick, delta %" PRIu64 ".%09" PRIu64 " msec",
             delta / NS_IN_S,
