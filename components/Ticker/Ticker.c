@@ -54,11 +54,17 @@ int run(void)
         uint64_t timestamp_new = 0;
         timeServer_rpc_time(&timestamp_new);
 
-        DECL_UNUSED_VAR(uint64_t delta) = timestamp_new - timestamp;
+        uint64_t delta = timestamp_new - timestamp;
+        DECL_UNUSED_VAR(int64_t jitter) = delta - NS_IN_S;
+
         Debug_LOG_INFO(
-            "1 sec tick, delta %" PRIu64 ".%09" PRIu64 " msec",
-            delta / NS_IN_S,
-            delta % NS_IN_S);
+            "[%s] 1 sec tick, jitter %c%"PRIu64".%06"PRIu64" ms",
+            get_instance_name(),
+            (jitter < 0)?'-':'+',
+            abs(jitter) / NS_IN_MS,
+            abs(jitter) % NS_IN_MS );
+
         timestamp = timestamp_new;
+
     }
 }
