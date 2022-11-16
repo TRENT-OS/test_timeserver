@@ -12,13 +12,13 @@ find_package("os-sdk" REQUIRED)
 os_sdk_set_defaults()
 os_sdk_setup(CONFIG_FILE "system_config.h" CONFIG_PROJECT "system_config")
 
+#-------------------------------------------------------------------------------
+# we use the TimeServer from the global components
+#global_components_import_project()
+os_sdk_import_from_global_components("components/TimeServer")
 
 #-------------------------------------------------------------------------------
 project(tests_timeserver C)
-
-TimeServer_DeclareCAmkESComponent(
-    TimeServer
-)
 
 DeclareCAmkESComponent(
     Ticker
@@ -31,7 +31,6 @@ DeclareCAmkESComponent(
         os_core_api
         lib_compiler
         lib_debug
-        TimeServer_client
 )
 
 DeclareCAmkESComponent(

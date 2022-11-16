@@ -5,38 +5,43 @@
  */
 
 import <std_connector.camkes>;
-
+import <global-connectors.camkes>;
+import <TimeServer/TimeServer.camkes>;
 import "components/Ticker/Ticker.camkes";
 import "components/Worker/Worker.camkes";
 
 #include "system_config.h"
 
-#include "TimeServer/camkes/TimeServer.camkes"
-TimeServer_COMPONENT_DEFINE(TimeServer)
-
-#include "system_config.h"
 
 assembly {
     composition {
-
-        component Ticker ticker;
 
         component Worker worker1;
         component Worker worker2;
 
         component TimeServer timeServer;
 
-        TimeServer_INSTANCE_CONNECT_CLIENTS(
-            timeServer,
-            ticker.timeServer_rpc, ticker.timeServer_notify
-        )
+        component Ticker ticker;
+        connection seL4TimeServer conn_timeServer(
+            from ticker.timeServer_rpc,
+            to timeServer.the_timer);
 
-     }
+        //component Ticker ticker2;
+        //connection seL4TimeServer conn_timeServer_2(
+        //    from ticker2.timeServer_rpc,
+        //    to timeServer.the_timer);
 
-    configuration {
-        TimeServer_CLIENT_ASSIGN_BADGES(
-            ticker.timeServer_rpc
-        )
+    }
+
+    configuration
+    {
+        // the tickers use just one timer each
+        timeServer.timers_per_client = 1;
+
+        // with any timeout below 300ms, the time it takes to print the message
+        // starts interfering with the ticks.
+        ticker.ticker_timeout  = 1000;
+        //ticker2.ticker_timeout = 300;
     }
 
 }

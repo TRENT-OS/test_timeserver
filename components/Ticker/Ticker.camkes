@@ -5,12 +5,10 @@
  *
  */
 
-import <if_OS_Timer.camkes>;
+import <global-connectors.camkes>;
 
 component Ticker {
     control;
-
-    uses       if_OS_Timer   timeServer_rpc;
-    consumes   TimerReady    timeServer_notify;
-
+    uses       Timer  timeServer_rpc;
+    attribute  int    ticker_timeout;
 }
