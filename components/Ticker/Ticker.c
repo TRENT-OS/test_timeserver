@@ -34,7 +34,23 @@ void post_init(void)
 //------------------------------------------------------------------------------
 int run(void)
 {
-    Debug_LOG_DEBUG("[%s] %s", get_instance_name(), __func__);
+    uint64_t timestamp = 0;
+    timeServer_rpc_time(&timestamp);
+
+    if (0 == timestamp) {
+        Debug_LOG_WARNING("[%s] time is 0, testing if time passes...",
+                       get_instance_name());
+        for (int i = 0; i < 100; i++) {
+            timeServer_rpc_time(&timestamp);
+            if (0 != timestamp) {
+                break;
+            }
+        }
+        if (0 == timestamp) {
+            Debug_LOG_ERROR("[%s] time seems frozen", get_instance_name());
+            return -1;
+        }
+    }
 
     // set up a tick every second
     int ret = timeServer_rpc_periodic(0, NS_IN_S);
@@ -44,7 +60,6 @@ int run(void)
         return -1;
     }
 
-    uint64_t timestamp = 0;
     timeServer_rpc_time(&timestamp);
 
     for (;;)
