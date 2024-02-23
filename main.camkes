@@ -1,7 +1,11 @@
 /*
- *  CAmkES configuration file for TimeServer tests
+ * CAmkES configuration file for TimeServer tests
  *
- *  Copyright (C) 2020, HENSOLDT Cyber GmbH
+ * Copyright (C) 2020-2024, HENSOLDT Cyber GmbH
+ * 
+ * SPDX-License-Identifier: GPL-2.0-or-later
+ *
+ * For commercial licensing, contact: info.cyber@hensoldt.net
  */
 
 import <std_connector.camkes>;
